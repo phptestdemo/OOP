@@ -10,16 +10,13 @@ class News
      */
     // public function __construct()
     // {
-    // 	require_once 'model/slide.php';
-    // 	$slide = new Slide;
-    // 	echo "<pre>";
-    // 	print_r($slide->getSlide());
-    // 	die();
+    	
     // }
 
     public function index()
     {
-    	
+    	$category = new Category;
+		$categories = $category->getCategory();
     	require_once 'view/home/index_view.php';
     }
 

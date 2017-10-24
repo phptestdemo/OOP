@@ -3,7 +3,6 @@
 /**
  * summary
  */
-include 'database.php';
 
 class Slide extends database
 {
