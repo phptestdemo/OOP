@@ -4,12 +4,13 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-10-24 21:11:33
+ * @Last Modified time: 2017-10-30 21:03:49
  */
 session_start();
 
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
 include 'model/database.php';
+include 'model/pager.php';
 require_once 'model/slide.php';
 require_once 'model/Category.php';
 

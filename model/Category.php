@@ -28,9 +28,13 @@ class Category extends database
 		return $this->loadAllRows();
     }
 
-    public function getNewsByIdLoai($id)
+    public function getNewsByIdLoai($id, $vitri = -1, $limit = -1)
     {
         $sql = "SELECT * FROM tintuc WHERE idLoaiTin = $id";
+
+        if ($vitri > -1 && $limit > 1) {
+        	$sql .= " limit $vitri, $limit"; // chu co dau cach truoc limit, neu ko phi cach sau $id o tren
+        }
         $this->setQuery($sql);
         return $this->loadAllRows(array($id));
     }
