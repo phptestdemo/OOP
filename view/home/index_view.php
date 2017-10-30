@@ -4,88 +4,22 @@
                     <li href="#" class="list-group-item menu1 active">
                     	Menu
                     </li>
-
-                    <li href="#" class="list-group-item menu1">
-                    	Level 1
-                    </li>
-                    <ul>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                    </ul>
-
-                    <li href="#" class="list-group-item menu1">
-                    	<a href="#">Level 1</a>
-                    </li>
-                    <ul>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="loaitin.html">Level2</a>
-                		</li>
-                    </ul>
-
-
-                    <li href="#" class="list-group-item menu1">
-                    	<a href="#">Level 1</a>
-                    </li>
-
-                    <ul>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                    </ul>
-
-
-                    <li href="#" class="list-group-item menu1">
-                    	<a href="#">Level 1</a>
-                    </li>
-                    <ul>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                		<li class="list-group-item">
-                			<a href="#">Level2</a>
-                		</li>
-                    </ul>
-
-                    <li href="#" class="list-group-item menu1">
-                    	<a href="#">Level 1</a>
-                    </li>
-                    <li href="#" class="list-group-item menu1">
-                    	<a href="#">Level 1</a>
-                    </li>
+					<?php foreach ($categories as $value): ?>
+						
+	                    <li href="#" class="list-group-item menu1">
+	                    	<?php echo $value->Ten ?>
+	                    </li>
+	                    <ul>
+	                    <?php $loaitin = explode(',', $value->Loaitin);
+	                    	foreach ($loaitin as $loai): 
+	                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
+	                	?>
+	                    	<li class="list-group-item">
+	                			<a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><?=$ten?></a>
+	                		</li>
+	                    <?php endforeach ?>
+	                    </ul>
+					<?php endforeach ?>
                 </ul>
             </div>
 
@@ -97,25 +31,28 @@
 
 	            	<div class="panel-body">
 	            		<!-- item -->
+	            		<?php foreach ($categories as $value): ?>
+	            			
 					    <div class="row-item row">
 		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
+		                		<a href="#"><?=$value->Ten?></a> |
+		                		<?php $loaitin = explode(',', $value->Loaitin);
+			                    	foreach ($loaitin as $loai): 
+			                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
+			                	?>
+		                			<small><a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><i><?=$ten?></i></a>/</small>
+		                		<?php endforeach ?>
 		                	</h3>
 		                	<div class="col-md-12 border-right">
 		                		<div class="col-md-3">
 			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
+			                            <img class="img-responsive" src="public/image/tintuc/<?=$value->image?>" alt="">
 			                        </a>
 			                    </div>
 
 			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
+			                        <h3><?=$value->TieuDe?></h3>
+			                        <p><?=$value->TomTat?></p>
 			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
 								</div>
 
@@ -123,145 +60,7 @@
 
 							<div class="break"></div>
 		                </div>
-		                <!-- end item -->
-		                <!-- item -->
-					    <div class="row-item row">
-		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                	</h3>
-		                	<div class="col-md-12 border-right">
-		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
-			                        </a>
-			                    </div>
-
-			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-								</div>
-
-		                	</div>
-
-							<div class="break"></div>
-		                </div>
-		                <!-- end item -->
-						<!-- item -->
-					    <div class="row-item row">
-		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                	</h3>
-		                	<div class="col-md-12 border-right">
-		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
-			                        </a>
-			                    </div>
-
-			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-								</div>
-
-		                	</div>
-
-							<div class="break"></div>
-		                </div>
-		                <!-- end item -->
-						<!-- item -->
-					    <div class="row-item row">
-		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                	</h3>
-		                	<div class="col-md-12 border-right">
-		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
-			                        </a>
-			                    </div>
-
-			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-								</div>
-
-		                	</div>
-
-							<div class="break"></div>
-		                </div>
-		                <!-- end item --><!-- item -->
-					    <div class="row-item row">
-		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                	</h3>
-		                	<div class="col-md-12 border-right">
-		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
-			                        </a>
-			                    </div>
-
-			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-								</div>
-
-		                	</div>
-
-							<div class="break"></div>
-		                </div>
-		                <!-- end item -->
-						<!-- item -->
-					    <div class="row-item row">
-		                	<h3>
-		                		<a href="#">Category</a> |
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                		<small><a href="loaitin.html"><i>subtitle</i></a>/</small>
-		                	</h3>
-		                	<div class="col-md-12 border-right">
-		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
-			                            <img class="img-responsive" src="image/320x150.png" alt="">
-			                        </a>
-			                    </div>
-
-			                    <div class="col-md-9">
-			                        <h3>Project Five</h3>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-								</div>
-
-		                	</div>
-
-							<div class="break"></div>
-		                </div>
+	            		<?php endforeach ?>
 		                <!-- end item -->
 
 					</div>
