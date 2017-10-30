@@ -15,7 +15,7 @@
 	                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
 	                	?>
 	                    	<li class="list-group-item">
-	                			<a href="loaitin.html"><?=$ten?></a>
+	                			<a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><?=$ten?></a>
 	                		</li>
 	                    <?php endforeach ?>
 	                    </ul>
@@ -40,7 +40,7 @@
 			                    	foreach ($loaitin as $loai): 
 			                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
 			                	?>
-		                			<small><a href="loaitin.html"><i><?=$ten?></i></a>/</small>
+		                			<small><a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><i><?=$ten?></i></a>/</small>
 		                		<?php endforeach ?>
 		                	</h3>
 		                	<div class="col-md-12 border-right">

@@ -27,4 +27,18 @@ class Category extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
     }
+
+    public function getNewsByIdLoai($id)
+    {
+        $sql = "SELECT * FROM tintuc WHERE idLoaiTin = $id";
+        $this->setQuery($sql);
+        return $this->loadAllRows(array($id));
+    }
+
+    public function getCategoryById($id)
+    {
+        $sql = "SELECT * FROM loaitin WHERE id = $id";
+        $this->setQuery($sql);
+        return $this->loadRow(array($id));
+    }
 }
