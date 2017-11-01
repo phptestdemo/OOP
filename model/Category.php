@@ -61,4 +61,25 @@ class Category extends database
         $this->setQuery($sql);
         return $this->loadRow(array($id));
     }
+
+    public function getComments($idTin)
+    {
+    	$sql = "SELECT comment.*, users.id as id_users, users.name FROM comment inner join users on comment.idUser = users.id WHERE idTinTuc = $idTin";
+        $this->setQuery($sql);
+        return $this->loadAllRows(array($idTin));
+    }
+
+    public function getNewsRelated($idLoaiTin, $idTin)
+    {
+    	$sql = "SELECT * FROM tintuc WHERE idLoaiTin = $idLoaiTin AND id <> $idTin limit 5";
+    	$this->setQuery($sql);
+    	return $this->loadAllRows(array($idLoaiTin));
+    }
+
+    public function getNewsHot()
+    {
+    	$sql = "SELECT * FROM tintuc WHERE NoiBat = 1 ORDER BY created_at DESC LIMIT 3";
+    	$this->setQuery($sql);
+    	return $this->loadAllRows();
+    }
 }
