@@ -4,10 +4,9 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-10-30 21:03:49
+ * @Last Modified time: 2017-11-01 12:46:56
  */
 session_start();
-
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
 include 'model/database.php';
 include 'model/pager.php';
@@ -23,7 +22,7 @@ $slides = $slide->getSlide();
 // die();
 
 require_once 'view/layout/header.php';
-if ($cn != 'loaitin') {
+if ($cn != 'loaitin' && $cn != 'detail') {
 	require_once 'view/layout/slide.php';
 }
 
@@ -34,9 +33,8 @@ switch ($cn) {
 	case 'loaitin':
 		require_once 'controller/NewsController.php';
 		break;
-	
-	default:
-		// code...
+	case 'detail':
+		require_once 'controller/NewsController.php';
 		break;
 }
 

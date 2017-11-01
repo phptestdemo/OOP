@@ -45,15 +45,15 @@
 		                	</h3>
 		                	<div class="col-md-12 border-right">
 		                		<div class="col-md-3">
-			                        <a href="chitiet.html">
+			                        <a href="?cn=detail&m=detail&id=<?=$value->id?>">
 			                            <img class="img-responsive" src="public/image/tintuc/<?=$value->image?>" alt="">
 			                        </a>
 			                    </div>
 
 			                    <div class="col-md-9">
-			                        <h3><?=$value->TieuDe?></h3>
+			                    <h3><a href="?cn=detail&m=detail&id=<?=$value->id?>"><?=$value->TieuDe?></a></h3>
 			                        <p><?=$value->TomTat?></p>
-			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+			                        <a class="btn btn-primary" href="?cn=detail&m=detail&id=<?=$value->id?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
 								</div>
 
 		                	</div>

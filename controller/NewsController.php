@@ -29,8 +29,7 @@ class News
 
 		$news = $category->getNewsByIdLoai($idLoaiTin);
 
-        $loaitin = $category->getCategoryById($idLoaiTin);
-        $title = $loaitin->Ten;
+        $title = $category->getCategoryById($idLoaiTin);
 
         $pagination = new pagination(count($news), $currentPage);
         $paginationHTML = $pagination->showPagination();
@@ -39,6 +38,14 @@ class News
 
         $news = $category->getNewsByIdLoai($idLoaiTin, $vitri, $limit);
     	require_once 'view/home/loaitin_view.php';
+    }
+
+    public function getDetailNews()
+    {
+    	$id = isset($_GET['id']) ? trim($_GET['id']) : '';
+    	$news = new Category();
+    	$tinTuc = $news->getNewsDetail($id);
+    	require_once 'view/home/detail_view.php'; 
     }
 
     function log($data = array())
@@ -61,7 +68,9 @@ switch ($method) {
 	case 'loaitin':
 		return $new->getLoaiTin();
 		break;
-	
+	case 'detail':
+		return $new->getDetailNews();
+		break;
 	default:
 		return $new->index();
 		break;

@@ -28,23 +28,23 @@
             <div class="col-md-9 ">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background-color:#337AB7; color:white;">
-                        <h4><b><?=$title?></b></h4>
+                        <h4><b><?=$title->Ten?></b></h4>
                     </div>
 
                     <?php foreach ($news as $value): ?>
                         <div class="row-item row">
                             <div class="col-md-3">
 
-                                <a href="detail.html">
+                                <a href="?cn=detail&m=detail&id=<?=$value->id?>">
                                     <br>
                                     <img width="200px" height="200px" class="img-responsive" src="public/image/tintuc/<?=$value->Hinh?>" alt="">
                                 </a>
                             </div>
 
                             <div class="col-md-9">
-                                <h3><?=$value->TieuDe?></h3>
+                                <h3><a href="?cn=detail&m=detail&id=<?=$value->id?>"><?=$value->TieuDe?></a></h3>
                                 <p><?=$value->TomTat?></p>
-                                <a class="btn btn-primary" href="detail.html">Xem thêm<span class="glyphicon glyphicon-chevron-right"></span></a>
+                                <a class="btn btn-primary" href="?cn=detail&m=detail&id=<?=$value->id?>">Xem thêm<span class="glyphicon glyphicon-chevron-right"></span></a>
                             </div>
                             <div class="break"></div>
                         </div>
