@@ -7,14 +7,11 @@
  */
 class Category extends database
 {
+
     /**
-     * summary
+     * lay the loai, loai tin va tin tuc
+     * @return obj
      */
-    // public function __construct()
-    // {
-        
-    // }
-    
     public function getCategory()
     {
     	$sql = "SELECT tl.*, GROUP_CONCAT(DISTINCT lt.id, '|', lt.Ten, '|', lt.TenKhongDau) as Loaitin, 
@@ -28,6 +25,13 @@ class Category extends database
 		return $this->loadAllRows();
     }
 
+    /**
+     * lay tin tuc theo loai tin co phan trang
+     * @param  int  $id    [id loai]
+     * @param  integer $vitri
+     * @param  integer $limit
+     * @return obj        
+     */
     public function getNewsByIdLoai($id, $vitri = -1, $limit = -1)
     {
         $sql = "SELECT * FROM tintuc WHERE idLoaiTin = $id";
@@ -39,9 +43,21 @@ class Category extends database
         return $this->loadAllRows(array($id));
     }
 
+    /**
+     * lay loai tin theo id
+     * @param  int $id
+     * @return view    
+     */
     public function getCategoryById($id)
     {
         $sql = "SELECT * FROM loaitin WHERE id = $id";
+        $this->setQuery($sql);
+        return $this->loadRow(array($id));
+    }
+
+    public function getNewsDetail($id)
+    {
+    	$sql = "SELECT * FROM tintuc WHERE id = $id";
         $this->setQuery($sql);
         return $this->loadRow(array($id));
     }
