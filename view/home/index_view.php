@@ -15,7 +15,7 @@
 	                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
 	                	?>
 	                    	<li class="list-group-item">
-	                			<a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><?=$ten?></a>
+	                			<a href="?cn=loaitin&m=loaitin&id=<?=$id?>&name=<?=$tenKhongDau?>"><?=$ten?></a>
 	                		</li>
 	                    <?php endforeach ?>
 	                    </ul>
@@ -40,20 +40,20 @@
 			                    	foreach ($loaitin as $loai): 
 			                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
 			                	?>
-		                			<small><a href="?cn=loaitin&m=loaitin&id=<?=$id?>"><i><?=$ten?></i></a>/</small>
+		                			<small><a href="?cn=loaitin&m=loaitin&id=<?=$id?>&name=<?=$tenKhongDau?>"><i><?=$ten?></i></a>/</small>
 		                		<?php endforeach ?>
 		                	</h3>
 		                	<div class="col-md-12 border-right">
 		                		<div class="col-md-3">
-			                        <a href="?cn=detail&m=detail&id=<?=$value->id?>">
+			                        <a href="?cn=detail&m=detail&id=<?=$value->idTin?>&name=<?=$value->TieuDeKhongDau?>">
 			                            <img class="img-responsive" src="public/image/tintuc/<?=$value->image?>" alt="">
 			                        </a>
 			                    </div>
 
 			                    <div class="col-md-9">
-			                    <h3><a href="?cn=detail&m=detail&id=<?=$value->id?>"><?=$value->TieuDe?></a></h3>
+			                    <h3><a href="?cn=detail&m=detail&id=<?=$value->idTin?>&name=<?=$value->TieuDeKhongDau?>"><?=$value->TieuDe?></a></h3>
 			                        <p><?=$value->TomTat?></p>
-			                        <a class="btn btn-primary" href="?cn=detail&m=detail&id=<?=$value->id?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+			                        <a class="btn btn-primary" href="?cn=detail&m=detail&id=<?=$value->idTin?>&name=<?=$value->TieuDeKhongDau?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
 								</div>
 
 		                	</div>
