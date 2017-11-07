@@ -1,16 +1,22 @@
 <?php
-$method = isset($_GET['m']) ? trim($_GET['m']) : 'index';
+$method = isset($_GET['m']) ? trim($_GET['m']) : '';
 $user = new UserController;
 switch ($method) {
-    case 'index':
-        $user->index();
+    case 'signup':
+        $user->signup();
         break;
     case 'register':
         $user->register();
         break;
-    default:
-        // code...
+    case 'signin':
+        $user->signin();
         break;
+    case 'login':
+        $user->login();
+        break;    
+    default:
+        header("Location: ?cn=index");
+        exit;
 }
 /**
  * summary
@@ -30,11 +36,11 @@ class UserController
      * 
      * @return view
      */
-    public function index()
+    public function signup()
     {
         require_once 'view/home/signup_view.php';
-        if (isset($_SESSION['error']) || isset($_SESSION['success'])) {
-            unset($_SESSION['error'], $_SESSION['success']);
+        if (isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
         }
     }
 
@@ -55,13 +61,39 @@ class UserController
             $idUser = $user->signUp($name, $email, $password);
             if ($idUser > 0) {
                 $_SESSION['success'] = "Dang ki tai khoan thanh cong";
-                header("Location: ?cn=signup&m=index");
+                header("Location: ?cn=signup&m=signin");
                 if (isset($_SESSION['error'])) {
                     unset($_SESSION['error']);
                 } 
             } else {
                 $_SESSION['error'] = "Dang ki khong thanh cong";
-                header("Location: ?cn=signup&m=index");
+                header("Location: ?cn=signup&m=signup");
+            }
+        }
+    }
+
+    public function signin()
+    {
+        require_once 'view/home/login_view.php';
+        if (isset($_SESSION['success']) || isset($_SESSION['error'])) {
+            unset($_SESSION['success'], $_SESSION['error']);
+        }
+    }
+
+    public function login()
+    {
+        if (isset($_POST['btnLogin'])) {
+            $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+            $password = isset($_POST['password']) ? trim($_POST['password']) : '';
+            
+            $user = new Users;
+            $member = $user->signIn($email, md5($password));
+            if (!empty($member)) {
+                $_SESSION['username'] = $member->name;
+                header("Location: ?cn=index");
+            } else {
+                $_SESSION['error'] = "Email hoặc mật khẩu không đúng!";
+                header("Location: ?cn=signin&m=signin");
             }
         }
     }
@@ -78,7 +110,8 @@ class UserController
         $emailUser = $user->checkDuplicateUser($email);
         if (!$emailUser) {
             $_SESSION['error'] = "Vui lòng chọn tài khoản email khác";
-            header("Location: ?cn=signup&m=index");
+            header("Location: ?cn=signup&m=signup");
+            exit;
         }
     }
 

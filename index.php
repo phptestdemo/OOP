@@ -4,7 +4,7 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-11-02 14:40:41
+ * @Last Modified time: 2017-11-07 15:03:39
  */
 session_start();
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
@@ -37,6 +37,9 @@ switch ($cn) {
 		require_once 'controller/NewsController.php';
 		break;
 	case 'signup':
+		require_once 'controller/UserController.php';
+		break;
+	case 'signin':
 		require_once 'controller/UserController.php';
 		break;
 }
