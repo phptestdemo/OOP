@@ -40,7 +40,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Tin Tức</a>
+            <a class="navbar-brand" href="?cn=index">Tin Tức</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -62,7 +62,7 @@
 
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a href="dangki.html">Đăng ký</a>
+                    <a href="?cn=signup">Đăng ký</a>
                 </li>
                 <li>
                     <a href="dangnhap.html">Đăng nhập</a>

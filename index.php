@@ -4,7 +4,7 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-11-01 12:46:56
+ * @Last Modified time: 2017-11-02 14:40:41
  */
 session_start();
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
@@ -22,7 +22,7 @@ $slides = $slide->getSlide();
 // die();
 
 require_once 'view/layout/header.php';
-if ($cn != 'loaitin' && $cn != 'detail') {
+if ($cn == 'index') {
 	require_once 'view/layout/slide.php';
 }
 
@@ -35,6 +35,9 @@ switch ($cn) {
 		break;
 	case 'detail':
 		require_once 'controller/NewsController.php';
+		break;
+	case 'signup':
+		require_once 'controller/UserController.php';
 		break;
 }
 

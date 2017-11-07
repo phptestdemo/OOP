@@ -50,13 +50,6 @@ class News
         require_once 'view/home/detail_view.php'; 
     }
 
-    function log($data = array())
-    {
-        echo '<pre/>';
-        print_r($data);
-        die();
-    }
-
 }
 
 

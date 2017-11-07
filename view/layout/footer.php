@@ -13,6 +13,7 @@
     <!-- end Footer -->
     <!-- jQuery -->
     <script src="public/js/jquery.js"></script>
+    <script src="public/js/jquery.validate.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="public/js/bootstrap.min.js"></script>
     <script src="public/js/my.js"></script>
