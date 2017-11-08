@@ -4,7 +4,7 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-11-08 10:08:53
+ * @Last Modified time: 2017-11-08 11:52:02
  */
 session_start();
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
@@ -44,6 +44,9 @@ switch ($cn) {
         break;
     case 'logout':
         require_once 'controller/UserController.php';
+        break;
+    case 'comment':
+        require_once 'controller/NewsController.php';
         break;
 }
 

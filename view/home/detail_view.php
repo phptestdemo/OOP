@@ -31,11 +31,15 @@
         <!-- Comments Form -->
         <div class="well">
             <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-            <form role="form">
+            <?php if (isset($_SESSION['err_cmt'])): ?>
+                <div class="alert alert-danger"><?=$_SESSION['err_cmt']?></div>
+            <?php endif ?>
+            <form role="form" method="post" action="?cn=comment&m=comment">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <input type="hidden" name="id_tin" value="<?=$tinTuc->id?>">
+                    <textarea class="form-control" rows="3" name="comment"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Gửi</button>
+                <button type="submit" name="btnCmt" class="btn btn-primary">Gửi</button>
             </form>
         </div>
 
