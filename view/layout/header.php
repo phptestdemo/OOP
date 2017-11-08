@@ -61,23 +61,26 @@
             </form>
 
             <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a href="?cn=signup">Đăng ký</a>
-                </li>
-                <li>
-                    <a href="dangnhap.html">Đăng nhập</a>
-                </li>
-                <li>
-                    <a>
-                        <span class ="glyphicon glyphicon-user"></span>
-                        Hương Hương
-                    </a>
-                </li>
+                
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li>
+                        <a>
+                            <span class ="glyphicon glyphicon-user"></span>
+                            <?=$_SESSION['username']?>
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="#">Đăng xuất</a>
-                </li>
-
+                    <li>
+                        <a href="#">Đăng xuất</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="?cn=signup&m=signup">Đăng ký</a>
+                    </li>
+                    <li>
+                        <a href="?cn=signin&m=signin">Đăng nhập</a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
 

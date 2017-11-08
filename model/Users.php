@@ -41,5 +41,12 @@ class Users extends database
         }
         return $flag;
     }
+
+    public function signIn($email, $password)
+    {
+        $sql = "SELECT * FROM users WHERE email = '{$email}' AND password = '{$password}'";
+        $this->setQuery($sql);
+        return $this->loadRow(array($email, $password));
+    }
     
 }
