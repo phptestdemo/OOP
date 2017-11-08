@@ -71,7 +71,7 @@
                     </li>
 
                     <li>
-                        <a href="#">Đăng xuất</a>
+                        <a href="?cn=logout&m=logout">Đăng xuất</a>
                     </li>
                 <?php else: ?>
                     <li>

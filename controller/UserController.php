@@ -13,7 +13,10 @@ switch ($method) {
         break;
     case 'login':
         $user->login();
-        break;    
+        break;  
+    case 'logout':
+        $user->logout();
+        break;  
     default:
         header("Location: ?cn=index");
         exit;
@@ -72,6 +75,11 @@ class UserController
         }
     }
 
+    /**
+     * show view signin
+     * 
+     * @return view
+     */
     public function signin()
     {
         require_once 'view/home/login_view.php';
@@ -80,6 +88,11 @@ class UserController
         }
     }
 
+    /**
+     * login
+     * 
+     * @return view
+     */
     public function login()
     {
         if (isset($_POST['btnLogin'])) {
@@ -96,6 +109,12 @@ class UserController
                 header("Location: ?cn=signin&m=signin");
             }
         }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header("Location: ?cn=index");
     }
 
     /**
