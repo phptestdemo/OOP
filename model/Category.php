@@ -64,7 +64,7 @@ class Category extends database
 
     public function getComments($idTin)
     {
-    	$sql = "SELECT comment.*, users.id as id_users, users.name FROM comment inner join users on comment.idUser = users.id WHERE idTinTuc = $idTin";
+    	$sql = "SELECT comment.*, users.id as id_users, users.name FROM comment inner join users on comment.idUser = users.id WHERE idTinTuc = $idTin ORDER BY created_at desc";
         $this->setQuery($sql);
         return $this->loadAllRows(array($idTin));
     }
@@ -81,5 +81,12 @@ class Category extends database
     	$sql = "SELECT * FROM tintuc WHERE NoiBat = 1 ORDER BY created_at DESC LIMIT 3";
     	$this->setQuery($sql);
     	return $this->loadAllRows();
+    }
+
+    public function addComment($idUser, $idTin, $content)
+    {
+        $sql = "INSERT INTO comment(idUser, idTinTuc, NoiDung) VALUES(?,?,?)";
+        $this->setQuery($sql);
+        return $this->execute(array($idUser, $idTin, $content));
     }
 }

@@ -50,6 +50,23 @@ class News
         require_once 'view/home/detail_view.php'; 
     }
 
+    public function insertComment()
+    {
+        $news = new Category;
+        if (isset($_POST['btnCmt'])) {
+            $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
+            $idTin = isset($_POST['id_tin']) ? trim($_POST['id_tin']) : '';
+            $content = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+            if (!empty($idUser)) {
+                $comment = $news->addComment($idUser, $idTin, $content);
+                // var_dump($comment); die();
+            } else {
+                $_SESSION['err_cmt'] = "Vui lòng đăng nhập để bình luận!";
+            }
+            header('Location:'.$_SERVER['HTTP_REFERER']);
+        }
+    }
+
 }
 
 
@@ -65,6 +82,9 @@ switch ($method) {
         break;
     case 'detail':
         return $new->getDetailNews();
+        break;
+    case 'comment':
+        return $new->insertComment();
         break;
     default:
         return $new->index();

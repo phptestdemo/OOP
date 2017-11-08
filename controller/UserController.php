@@ -83,8 +83,8 @@ class UserController
     public function signin()
     {
         require_once 'view/home/login_view.php';
-        if (isset($_SESSION['success']) || isset($_SESSION['error'])) {
-            unset($_SESSION['success'], $_SESSION['error']);
+        if (isset($_SESSION['success']) || isset($_SESSION['error']) || isset($_SESSION['err_cmt'])) {
+            unset($_SESSION['success'], $_SESSION['error'], $_SESSION['err_cmt']);
         }
     }
 
@@ -103,6 +103,7 @@ class UserController
             $member = $user->signIn($email, md5($password));
             if (!empty($member)) {
                 $_SESSION['username'] = $member->name;
+                $_SESSION['id_user'] = $member->id;
                 header("Location: ?cn=index");
             } else {
                 $_SESSION['error'] = "Email hoặc mật khẩu không đúng!";
