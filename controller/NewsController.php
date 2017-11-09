@@ -8,10 +8,6 @@ class News
     /**
      * summary
      */
-    // public function __construct()
-    // {
-        
-    // }
 
     public function index()
     {
@@ -37,6 +33,59 @@ class News
         $vitri = ($currentPage - 1) * $limit;
         $news = $category->getNewsByIdLoai($idLoaiTin, $vitri, $limit);
         require_once 'view/home/loaitin_view.php';
+    }
+
+    public function searchNews()
+    {
+        $idLoaiTin = isset($_GET['id']) ? trim($_GET['id']) : '';
+        $currentPage = isset($_GET['page']) ? trim($_GET['page']) : 1;
+        $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+        $category = new Category;
+        $categories = $category->getCategory();
+        $new = $category->getNewsByKeyword($keyword);
+        $pagination = new pagination(count($new), $currentPage);
+        $paginationHTML = $pagination->showPagination();
+        $limit = $pagination->_nItemOnPage;
+        $vitri = ($currentPage - 1) * $limit;
+        $news = $category->getNewsByKeyword($keyword, $vitri, $limit);
+
+?>
+            <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337AB7; color:white;">
+                        <h4><b>Tìm thấy <?=count($news)?> cho <i style="color: red"><?=$keyword?></i></b></h4>
+                    </div>
+
+                    <?php foreach ($news as $value): ?>
+                        <div class="row-item row">
+                            <div class="col-md-3">
+
+                                <a href="?cn=detail&m=detail&id=<?=$value->id?>&name=<?=$value->TieuDeKhongDau?>">
+                                    <br>
+                                    <img width="200px" height="200px" class="img-responsive" src="public/image/tintuc/<?=$value->Hinh?>" alt="">
+                                </a>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3><a href="?cn=detail&m=detail&id=<?=$value->id?>&name=<?=$value->TieuDeKhongDau?>"><?=$value->TieuDe?></a></h3>
+                                <p><?=$value->TomTat?></p>
+                                <a class="btn btn-primary" href="?cn=detail&m=detail&id=<?=$value->id?>&name=<?=$value->TieuDeKhongDau?>">Xem thêm<span class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                            <div class="break"></div>
+                        </div>
+                    <?php endforeach ?>
+
+                    <!-- Pagination -->
+                    <div class="row text-center">
+                        <div class="col-lg-12">
+                            <?=$paginationHTML?>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                </div>
+<?php
+            
+        
     }
 
     public function getDetailNews()
@@ -85,6 +134,9 @@ switch ($method) {
         break;
     case 'comment':
         return $new->insertComment();
+        break;
+    case 'search':
+        return $new->searchNews();
         break;
     default:
         return $new->index();

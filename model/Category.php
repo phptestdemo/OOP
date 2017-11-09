@@ -43,6 +43,16 @@ class Category extends database
         return $this->loadAllRows(array($id));
     }
 
+    public function getNewsByKeyword($keyword, $vitri = -1, $limit = -1)
+    {
+        $sql = "SELECT * FROM tintuc WHERE TieuDe LIKE '%$keyword%' OR TomTat LIKE '%$keyword%'";
+        if ($vitri > -1 && $limit > 1) {
+            $sql .= " LIMIT $vitri, $limit";
+        }
+        $this->setQuery($sql);
+        return $this->loadAllRows(array($keyword));
+    }
+
     /**
      * lay loai tin theo id
      * @param  int $id
