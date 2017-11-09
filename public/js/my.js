@@ -138,4 +138,11 @@ $(document).ready(function() {
             $( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
         }
     });
+
+    $("#btnSearch").click(function() {
+        var key = $("#txtSearch").val();
+        $.post("?cn=search&m=search", {keyword: key},function(data) {
+            $(".contentSearch").html(data);
+        });
+    });
 });
