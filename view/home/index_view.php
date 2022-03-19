@@ -1,31 +1,29 @@
 <div class="row main-left">
-			<div class="col-md-3 ">
-			    <ul class="list-group" id="menu">
-			        <li href="#" class="list-group-item menu1 active">
-			            Menu
-			        </li>
+            <div class="col-md-3 ">
+                <ul class="list-group" id="menu">
+                    <li href="#" class="list-group-item menu1 active">
+                    	Menu
+                    </li>
+					<?php foreach ($categories as $value): ?>
+						
+	                    <li href="#" class="list-group-item menu1">
+	                    	<?php echo $value->Ten ?>
+	                    </li>
+	                    <ul>
+	                    <?php $loaitin = explode(',', $value->Loaitin);
+	                    	foreach ($loaitin as $loai): 
+	                    	list($id, $ten, $tenKhongDau) = explode('|', $loai);
+	                	?>
+	                    	<li class="list-group-item">
+	                			<a href="?cn=loaitin&m=loaitin&id=<?=$id?>&name=<?=$tenKhongDau?>"><?=$ten?></a>
+	                		</li>
+	                    <?php endforeach ?>
+	                    </ul>
+					<?php endforeach ?>
+                </ul>
+            </div>
 
-			        <?php foreach ($categories as $value): ?>
-			            
-			            <li href="#" class="list-group-item menu1">
-			                <?php echo $value->Ten ?>
-			            </li>
-			            <ul>
-			                <?php $loaitin = explode(',', $value->Loaitin);
-			                foreach ($loaitin as $loai): 
-			                    list($id, $ten, $tenKhongDau) = explode('|', $loai);
-			                    ?>
-			                    <li class="list-group-item">
-			                        <a href="?cn=loaitin&m=loaitin&id=<?=$id?>&name=<?=$tenKhongDau?>"><?=$ten?></a>
-			                    </li>
-			                <?php endforeach ?>
-			            </ul>
-			        <?php endforeach ?>
-			        
-			    </ul>
-			</div>
-
-            <div class="col-md-9 contentSearch">
+            <div class="col-md-9">
 	            <div class="panel panel-default">
 	            	<div class="panel-heading" style="background-color:#337AB7; color:white;" >
 	            		<h2 style="margin-top:0px; margin-bottom:0px;"> Tin Tức</h2>

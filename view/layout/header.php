@@ -55,9 +55,9 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" id="txtSearch" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search">
                 </div>
-                <button type="button" id="btnSearch" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
 
             <ul class="nav navbar-nav pull-right">

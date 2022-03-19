@@ -4,7 +4,7 @@
  * @Author: Quang Duc Chung
  * @Date:   2017-10-23 10:25:32
  * @Last Modified by:   chungqd
- * @Last Modified time: 2017-11-09 13:45:39
+ * @Last Modified time: 2017-11-08 11:52:02
  */
 session_start();
 $cn = isset($_GET['cn']) ? trim($_GET['cn']) : 'index';
@@ -48,11 +48,7 @@ switch ($cn) {
     case 'comment':
         require_once 'controller/NewsController.php';
         break;
-    case 'search':
-        require_once 'controller/NewsController.php';
-        break;
 }
 
 
 require_once 'view/layout/footer.php';
-
